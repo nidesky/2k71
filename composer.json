@@ -9,6 +9,7 @@
         "laravel/framework": "5.1.*"
     },
     "require-dev": {
+        "laravel/envoy": "~1.0",
         "barryvdh/laravel-ide-helper": "2.1.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
