@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 
 use Ik47\Http\Requests;
 use Ik47\Http\Controllers\Controller;
+use Hashids;
 
 class HomeController extends Controller
 {
     public function getIndex()
-    {
-        return 'This is My Blog!';
+    {dd(Hashids::decode("plxQgoExPGOEX"));
+        return Hashids::encode(999999999978999999);
     }
 }
