@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "rydurham/sentinel": "~2.2"
     },
     "require-dev": {
         "laravel/envoy": "~1.0",
@@ -49,5 +50,14 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "type": "composer",
+            "url": "http://packagist.cn"
+        }
+    ]
 }
