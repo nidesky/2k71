@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Ik47
+        psr4_prefix: Ik47
+        src_path: app
