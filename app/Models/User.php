@@ -13,9 +13,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 {
     use Authenticatable, CanResetPassword, SoftDeletes;
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'username', 'email', 'password', 'last_login',
+        'avatar', 'mobile', 'level', 'activated',
+        'weixin_id', 'weibo_id', 'github_id', 'qq_id'
+    ];
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password'];
 
     public function posts()
     {

@@ -139,6 +139,7 @@ return [
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -195,7 +196,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Hashids'   => Vinkla\Hashids\Facades\Hashids::class,
-
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
     ],
 
 ];
