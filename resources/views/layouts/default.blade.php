@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/assets/css/main.css"/>
     <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <meta property="wb:webmaster" content="0c085c73cfa893ff" />
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
