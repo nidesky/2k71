@@ -2,6 +2,7 @@
 
 namespace Ik47\Http\Controllers;
 
+use Ik47\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 use Ik47\Http\Requests;
@@ -10,8 +11,12 @@ use Hashids;
 
 class HomeController extends Controller
 {
-    public function getIndex()
-    {dd(Hashids::decode("plxQgoExPGOEX"));
-        return Hashids::encode(999999999978999999);
+    public function index(PostRepository $post)
+    {
+        $posts = $post->all();
+
+        return view('home.index')->with(compact('posts'));
     }
+
+
 }

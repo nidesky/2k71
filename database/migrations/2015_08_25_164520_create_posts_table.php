@@ -31,9 +31,15 @@ class CreatePostsTable extends Migration
 
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
+            $table->softDeletes();
 
         });
+
+        factory(Ik47\Models\Post::class, 50)->create([
+            'user_id' => 1
+        ]);
     }
 
     /**

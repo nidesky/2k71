@@ -30,8 +30,15 @@ class CreateUsersTable extends Migration
             $table->string('qq_id')->default('')->index();
 
             $table->timestamps();
+            $table->softDeletes();
 
         });
+
+        factory(Ik47\Models\User::class)
+            ->create([
+                'username' => 'omac',
+                'email'    => '82491633@qq.com'
+            ]);
     }
 
     /**
