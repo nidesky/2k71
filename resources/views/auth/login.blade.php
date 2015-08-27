@@ -39,7 +39,7 @@
                             <i class="fa fa-qq"></i>
                             <span>QQ</span>
                         </a>
-                        <a href="#1" class="btn btn-default btn-git-signin">
+                        <a href="{{ url('auth/github') }}" class="btn btn-default btn-git-signin">
                             <i class="fa fa-github"></i>
                             <span>Github</span>
                         </a>

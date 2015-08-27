@@ -112,4 +112,33 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    public function getGithub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function getGithubCallback()
+    {
+        $oauthUser = Socialite::driver('github')->user();
+
+        if ($user = $this->user->checkExists(['github_id' => $oauthUser->getId()])) {
+
+            Session::put('user', $user);
+
+            return redirect('/');
+        }
+
+        $user = $this->user->create([
+            'username' => $oauthUser->getNickname(),
+            'email'    => $oauthUser->getEmail(),
+            'password' => bcrypt('123456'),
+            'avatar'   => $oauthUser->getAvatar() ?: '',
+            'github_id' => $oauthUser->getId()
+        ]);
+
+        Session::put('user', $user);
+
+        return redirect('/');
+    }
+
 }

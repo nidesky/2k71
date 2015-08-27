@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('weibo_id')->default('')->index();
             $table->string('github_id')->default('')->index();
             $table->string('qq_id')->default('')->index();
+            $table->string('google_id')->default('')->index();
 
             $table->timestamps();
             $table->softDeletes();
