@@ -35,7 +35,7 @@
                             <i class="fa fa-weibo"></i>
                             <span>Weibo</span>
                         </a>
-                        <a href="#1" class="btn btn-default btn-qq-signin">
+                        <a href="{{ url('auth/qq') }}" class="btn btn-default btn-qq-signin">
                             <i class="fa fa-qq"></i>
                             <span>QQ</span>
                         </a>

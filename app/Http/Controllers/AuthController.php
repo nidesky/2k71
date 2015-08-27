@@ -79,4 +79,37 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    /**
+     * qq登陆
+     *
+     * @return mixed
+     */
+    public function getQq()
+    {
+        return Socialite::with('qq')->redirect();
+    }
+
+    public function getQqCallback()
+    {
+        $oauthUser = Socialite::with('qq')->user();
+
+        if ($user = $this->user->checkExists(['qq_id' => $oauthUser->getId()])) {
+
+            Session::put('user', $user);
+
+            return redirect('/');
+        }
+
+        $user = $this->user->create([
+            'username' => $oauthUser->getNickname(),
+            'password' => bcrypt('123456'),
+            'avatar'   => $oauthUser->getAvatar() ?: '',
+            'qq_id' => $oauthUser->getId()
+        ]);
+
+        Session::put('user', $user);
+
+        return redirect('/');
+    }
+
 }

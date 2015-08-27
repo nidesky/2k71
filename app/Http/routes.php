@@ -9,3 +9,5 @@ Route::post('signup',   'AuthController@postSignup');
 
 Route::get('auth/weibo', 'AuthController@getWeibo');
 Route::get('auth/weibo-callback', 'AuthController@getWeiboCallback');
+Route::get('auth/qq', 'AuthController@getQq');
+Route::get('auth/qq-callback', 'AuthController@getQqCallback');
