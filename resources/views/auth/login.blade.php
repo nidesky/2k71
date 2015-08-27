@@ -43,7 +43,7 @@
                             <i class="fa fa-github"></i>
                             <span>Github</span>
                         </a>
-                        <a href="#1" class="btn btn-default btn-gl-signin">
+                        <a href="{{ url('auth/google') }}" class="btn btn-default btn-gl-signin">
                             <i class="fa fa-google-plus"></i>
                             <span>Google</span>
                         </a>

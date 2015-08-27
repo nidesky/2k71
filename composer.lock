@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d57da6c502b7eb25a496e86d33f72952",
+    "hash": "eea785f0b43059375242a5b4f9db25a1",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1439,43 +1439,6 @@
                 "shell"
             ],
             "time": "2015-07-16 15:26:57"
-        },
-        {
-            "name": "socialiteproviders/google",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Google-Plus.git",
-                "reference": "fa76672066781f2a954d1e9e47542d9ce06ad525"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Google-Plus/zipball/fa76672066781f2a954d1e9e47542d9ce06ad525",
-                "reference": "fa76672066781f2a954d1e9e47542d9ce06ad525",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0",
-                "socialiteproviders/manager": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Google\\": "src/"
-                }
-            },
-            "notification-url": "http://packagist.cn/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "DraperStudio",
-                    "email": "hello@draperstud.io"
-                }
-            ],
-            "description": "Google OAuth2 Provider for Laravel Socialite",
-            "time": "2015-06-18 14:20:02"
         },
         {
             "name": "socialiteproviders/manager",

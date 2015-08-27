@@ -13,3 +13,5 @@ Route::get('auth/qq', 'AuthController@getQq');
 Route::get('auth/qq-callback', 'AuthController@getQqCallback');
 Route::get('auth/github', 'AuthController@getGithub');
 Route::get('auth/github-callback', 'AuthController@getGithubCallback');
+Route::get('auth/google', 'AuthController@getGoogle');
+Route::get('auth/google-callback', 'AuthController@getGoogleCallback');

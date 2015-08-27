@@ -141,4 +141,32 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    public function getGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function getGoogleCallback()
+    {
+        $oauthUser = Socialite::driver('google')->user();
+
+        if ($user = $this->user->checkExists(['google_id' => $oauthUser->getId()])) {
+
+            Session::put('user', $user);
+
+            return redirect('/');
+        }
+
+        $user = $this->user->create([
+            'email'    => $oauthUser->getEmail(),
+            'password' => bcrypt('123456'),
+            'avatar'   => $oauthUser->getAvatar() ?: '',
+            'google_id' => $oauthUser->getId()
+        ]);
+
+        Session::put('user', $user);
+
+        return redirect('/');
+    }
+
 }
