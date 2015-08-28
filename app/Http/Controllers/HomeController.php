@@ -11,6 +11,12 @@ use Hashids;
 
 class HomeController extends Controller
 {
+
+    public function demo()
+    {
+        die('This is a demo');
+    }
+
     public function index(PostRepository $post)
     {
         $posts = $post->all();

@@ -39,7 +39,7 @@ return [
 
         'main' => [
             'salt' => 'www.2k71.com',
-            'length' => '12',
+            'length' => '10',
             'alphabet' => 'abcdefghjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
         ],
 

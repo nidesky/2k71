@@ -2,13 +2,13 @@
 
 namespace Ik47\Http\Controllers;
 
+use Hashids;
 use Ik47\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 use Ik47\Http\Requests;
 use Ik47\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
-use Session;
 
 class AuthController extends Controller
 {
@@ -20,17 +20,27 @@ class AuthController extends Controller
         $this->user = $user;
     }
 
-
+    /**
+     * 登录页面
+     *
+     * @return \Illuminate\View\View
+     */
     public function getLogin()
     {
         return view('auth.login');
     }
+
 
     public function postLogin()
     {
         dd('login');
     }
 
+    /**
+     * 注册页面
+     *
+     * @return \Illuminate\View\View
+     */
     public function getSignup()
     {
         return view('auth.signup');
@@ -39,6 +49,18 @@ class AuthController extends Controller
     public function postSignup()
     {
         dd('signup');
+    }
+
+    /**
+     * 登出操作
+     *
+     * @return Redirect
+     */
+    public function getSignout()
+    {
+        session()->flush();
+
+        return redirect('login');
     }
 
     /**
@@ -58,29 +80,11 @@ class AuthController extends Controller
      */
     public function getWeiboCallback()
     {
-        $oauthUser = Socialite::with('weibo')->user();
-
-        if ($user = $this->user->checkExists(['weibo_id' => $oauthUser->getId()])) {
-
-            Session::put('user', $user);
-
-            return redirect('/');
-        }
-
-        $user = $this->user->create([
-            'username' => $oauthUser->getNickname(),
-            'password' => bcrypt('123456'),
-            'avatar'   => $oauthUser->getAvatar() ?: '',
-            'weibo_id' => $oauthUser->getId()
-        ]);
-
-        Session::put('user', $user);
-
-        return redirect('/');
+        return $this->socialReturn('weibo');
     }
 
     /**
-     * qq登陆
+     * qq 登陆
      *
      * @return mixed
      */
@@ -89,84 +93,128 @@ class AuthController extends Controller
         return Socialite::with('qq')->redirect();
     }
 
+    /**
+     * qq 回调地址
+     *
+     * @return Redirect
+     */
     public function getQqCallback()
     {
-        $oauthUser = Socialite::with('qq')->user();
-
-        if ($user = $this->user->checkExists(['qq_id' => $oauthUser->getId()])) {
-
-            Session::put('user', $user);
-
-            return redirect('/');
-        }
-
-        $user = $this->user->create([
-            'username' => $oauthUser->getNickname(),
-            'password' => bcrypt('123456'),
-            'avatar'   => $oauthUser->getAvatar() ?: '',
-            'qq_id' => $oauthUser->getId()
-        ]);
-
-        Session::put('user', $user);
-
-        return redirect('/');
+        return $this->socialReturn('qq');
     }
 
+    /**
+     * github 登录
+     *
+     * @return mixed
+     */
     public function getGithub()
     {
         return Socialite::driver('github')->redirect();
     }
 
+    /**
+     * github 回调地址
+     *
+     * @return Redirect
+     */
     public function getGithubCallback()
     {
-        $oauthUser = Socialite::driver('github')->user();
-
-        if ($user = $this->user->checkExists(['github_id' => $oauthUser->getId()])) {
-
-            Session::put('user', $user);
-
-            return redirect('/');
-        }
-
-        $user = $this->user->create([
-            'username' => $oauthUser->getNickname(),
-            'email'    => $oauthUser->getEmail(),
-            'password' => bcrypt('123456'),
-            'avatar'   => $oauthUser->getAvatar() ?: '',
-            'github_id' => $oauthUser->getId()
-        ]);
-
-        Session::put('user', $user);
-
-        return redirect('/');
+        return $this->socialReturn('github');
     }
 
+    /**
+     * google 登录
+     *
+     * @return mixed
+     */
     public function getGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
+    /**
+     * google登录回调页面
+     *
+     * @return Redirect
+     */
     public function getGoogleCallback()
     {
-        $oauthUser = Socialite::driver('google')->user();
+        return $this->socialReturn('google');
+    }
 
-        if ($user = $this->user->checkExists(['google_id' => $oauthUser->getId()])) {
-
-            Session::put('user', $user);
-
+    /**
+     * 第三方登录返回
+     *
+     * @param $social_type
+     * @return Redirect
+     */
+    protected function socialReturn($social_type)
+    {
+        if ($this->callbackHandler($social_type)) {
             return redirect('/');
         }
 
-        $user = $this->user->create([
-            'email'    => $oauthUser->getEmail(),
-            'password' => bcrypt('123456'),
+        return redirect()->back();
+    }
+
+    /**
+     * 登录处理回调
+     *
+     * @param $social_type
+     * @return bool
+     */
+    protected function callbackHandler($social_type)
+    {
+        $oauthUser = Socialite::with($social_type)->user();
+
+        if ($user = $this->user->checkExists([$social_type.'_id' => $oauthUser->getId()])) {
+
+            session()->put('user', $user);
+
+            return true;
+        }
+
+        switch ($social_type) {
+            case 'google' :
+                $info = [
+                    'email'    => $oauthUser->getEmail(),
+                    'google_id' => $oauthUser->getId()
+                ];
+                break;
+            case 'github':
+                $info = [
+                    'email'    => $oauthUser->getEmail(),
+                    'github_id' => $oauthUser->getId()
+                ];
+                break;
+            case 'weibo':
+                $info = [
+                    'weibo_id' => $oauthUser->getId()
+                ];
+                break;
+            case 'weixin':
+                return false;
+                break;
+            case 'qq':
+            default:
+                $info = [
+                    'qq_id' => $oauthUser->getId()
+                ];
+                break;
+        }
+
+        $info += [
+            'username' => $social_type . '_' . dec62(time().mt_rand(11111, 99999)),
+            'password' => bcrypt(time().mt_rand(11111, 99999)),
             'avatar'   => $oauthUser->getAvatar() ?: '',
-            'google_id' => $oauthUser->getId()
-        ]);
+        ];
 
-        Session::put('user', $user);
+        $user = $this->user->create($info);
 
-        return redirect('/');
+        session()->put('user', $user);
+
+        return true;
     }
 
 }

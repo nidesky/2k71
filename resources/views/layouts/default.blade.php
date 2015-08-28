@@ -26,8 +26,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url('login') }}">Log in</a></li>
-                <li><a href="{{ url('signup') }}">Sign up</a></li>
+                @include('layouts.nav-user')
             </ul>
         </div>
     </div>
