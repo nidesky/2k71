@@ -6,3 +6,4 @@ Homestead.json
 /.idea
 composer.lock
 /upyun
+.DS_Store
