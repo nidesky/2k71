@@ -26,7 +26,8 @@
             "database"
         ],
         "psr-4": {
-            "Ik47\\": "app/"
+            "Ik47\\": "app/",
+            "Nidesky\\Upyun\\": "upyun/src/"
         },
         "files":[
             "app/Http/helpers.php"
@@ -57,14 +58,5 @@
     },
     "config": {
         "preferred-install": "dist"
-    },
-    "repositories": [
-        {
-            "packagist": false
-        },
-        {
-            "type": "composer",
-            "url": "http://packagist.cn"
-        }
-    ]
+    }
 }

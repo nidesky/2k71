@@ -80,6 +80,13 @@ return [
             'url_type'  => 'publicURL',
         ],
 
+        'upyun'     => [
+            'driver'    => 'upyun',
+            'bucket'    => 'demo-tryup',
+            'username'  => 'omac',
+            'password'  => 'djb12345'
+        ]
+
     ],
 
 ];

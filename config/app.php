@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -140,6 +140,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
+        Nidesky\Upyun\UpyunFilesystemServiceProvider::class,
 
         /*
          * Application Service Providers...
