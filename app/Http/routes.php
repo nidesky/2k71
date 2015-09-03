@@ -17,3 +17,14 @@ Route::get('auth/github', 'AuthController@getGithub');
 Route::get('auth/github-callback', 'AuthController@getGithubCallback');
 Route::get('auth/google', 'AuthController@getGoogle');
 Route::get('auth/google-callback', 'AuthController@getGoogleCallback');
+
+Route::group(
+    [
+        'namespace' => 'Admin',
+        'domain' => config('2k71.backend_domain')
+    ],
+    function()
+    {
+        Route::controller('auth', 'AuthController');
+    }
+);

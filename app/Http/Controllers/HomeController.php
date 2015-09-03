@@ -15,6 +15,7 @@ class HomeController extends Controller
 
     public function demo()
     {
+
         $file = fopen(public_path('assets/imgs/23.png'), 'w');
         $upyun = Storage::disk('upyun');
         $rs = $upyun->readStream('disk/demo.png');

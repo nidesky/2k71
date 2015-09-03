@@ -11,7 +11,8 @@
         "laravel/socialite": "~2.0",
         "socialiteproviders/qq": "1.1.0",
         "socialiteproviders/weibo": "1.0.0",
-        "socialiteproviders/weixin": "1.0.0"
+        "socialiteproviders/weixin": "1.0.0",
+        "bican/roles": "2.1.*"
     },
     "require-dev": {
         "laravel/envoy": "~1.0",

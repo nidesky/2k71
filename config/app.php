@@ -140,6 +140,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
+        Bican\Roles\RolesServiceProvider::class,
         Nidesky\Upyun\UpyunFilesystemServiceProvider::class,
 
         /*

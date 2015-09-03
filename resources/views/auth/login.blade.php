@@ -9,8 +9,8 @@
                     <form method="POST" id="login-form">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" name="email" class="form-control" />
-                            <span class="help-block error-input">asdfasdfasdfasdf</span>
+                            <input type="text" name="email" class="form-control" v-model="email" />
+                            <span class="help-block error-input">@{{ email }}</span>
                         </div>
 
                         <div class="form-group">
@@ -33,5 +33,7 @@
             </div>
         </div>
     </div>
+
+    <script src="/js/app.js"></script>
 
 @stop
