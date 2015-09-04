@@ -2,7 +2,7 @@
 
 namespace Ik47\Http\Controllers;
 
-use Ik47\Repositories\PostRepository;
+use Ik47\Repositories\Contracts\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
 use Ik47\Http\Requests;
@@ -24,7 +24,7 @@ class HomeController extends Controller
         die('This is a demo');
     }
 
-    public function index(PostRepository $post)
+    public function index(PostRepositoryInterface $post)
     {
         $posts = $post->all();
 

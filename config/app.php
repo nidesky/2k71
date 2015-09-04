@@ -150,6 +150,8 @@ return [
         Ik47\Providers\EventServiceProvider::class,
         Ik47\Providers\RouteServiceProvider::class,
 
+        Ik47\Providers\RepositoryServiceProvider::class
+
     ],
 
     /*

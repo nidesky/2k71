@@ -2,8 +2,9 @@
 namespace Ik47\Repositories;
 
 use Ik47\Models\Post;
+use Ik47\Repositories\Contracts\PostRepositoryInterface;
 
-class PostRepository
+class PostRepository implements PostRepositoryInterface
 {
     protected $post;
 
